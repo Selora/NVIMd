@@ -1,0 +1,3 @@
+[submodule "NVIMd-config"]
+	path = NVIMd-config
+	url = https://github.com/Selora/NVIMd-config.git
