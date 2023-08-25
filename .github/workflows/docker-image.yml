@@ -8,8 +8,9 @@ on:
 
 jobs:
 
-  build:
+  push_to_registry:
 
+    name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
 
     steps:
@@ -17,7 +18,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Docker Login
-      uses: docker/login-action@1
+      uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -25,12 +26,12 @@ jobs:
     
     - name: Extract metadata (tags, labels) for Docker
       id: meta
-      uses: docker/metadata-action@4
+      uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
       with:
         images: selora/nvimd
 
     - name: Build and push Docker image
-      uses: docker/build-push-action@4
+      uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
       with:
         context: .
         file: ./Dockerfile
