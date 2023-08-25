@@ -17,10 +17,10 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Docker Login
-      uses: docker/login-action@2.2.0
+      uses: docker/login-action@1
       with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_TOKEN }}
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
         
     
     - name: Extract metadata (tags, labels) for Docker
