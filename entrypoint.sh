@@ -1,7 +1,9 @@
 #!/bin/bash
 # entrypoint.sh
 
-nvim /workspace
+tmux new-session -d -s nvimd 'nvim /workspace'
+exec tmux attach -t nvimd
+#nvim /workspace
 
 echo "Exiting... Checking for changes to neovim configuration..."
 cd ~/.config/nvim
