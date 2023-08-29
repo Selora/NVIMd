@@ -56,6 +56,8 @@ RUN nvim --headless "+MasonInstall terraform-ls tflint" +qa
 COPY --chmod=0755 ./entrypoint.sh /root/entrypoint.sh
 #ADD --chmod=0755 ./entrypoint.sh ~/entrypoint.sh
 
+COPY --chmod=0755 ./tmux.conf /root/.tmux.conf
+
 # Switch back to root user for the rest, so it works with rootless containers with GUID remapping as well
 ENTRYPOINT ["/root/entrypoint.sh"]
 #CMD ["nvim"]
