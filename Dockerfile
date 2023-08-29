@@ -14,6 +14,8 @@ RUN apk add --virtual dev-env build-base gcc tree-sitter tree-sitter-cli
 RUN apk add --virtual dev-env-go go
 # NPM required for pylint?
 RUN apk add --virtual dev-env-python python3 py3-pip npm black py3-pylint py3-isort ruff
+# Terraform env. Not needed, taken care of by Mason
+#RUN apk add --virtual dev-env-terraform tflint terraform terraform-ls
 
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
@@ -43,6 +45,12 @@ RUN nvim --headless +MasonUpdate +qa
 # See https://github.com/nvim-treesitter/nvim-treesitter/issues/2533
 RUN nvim --headless +TSUpdateSync +qa 
 RUN timeout 60 nvim --headless +TSInstallSync c cpp bash fish html xml javascript json csv yaml bash fish || exit 0
+
+# Mason Terraform env
+RUN nvim --headless "+MasonInstall terraform-ls tflint" +qa
+
+# Mason python env
+# !TODO
 
 ## Start Neovim when the container is run
 COPY --chmod=0755 ./entrypoint.sh /root/entrypoint.sh
