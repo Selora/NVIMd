@@ -32,7 +32,7 @@ RUN mkdir /workspace
 RUN mkdir ~/.config
 
 # Copy your Neovim configuration file
-#ADD --chown=nvim-user:nvim-user ./nvim /home/nvim-user/.config/nvim
+#ADD --chown=nvim-user:nvim-user ./NVIMd-config /root/.config/nvim
 #WORKDIR /home/nvim-user/.config
 RUN git clone https://github.com/Selora/NVIMd-config ~/.config/nvim
 
